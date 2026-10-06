@@ -8,15 +8,18 @@ public class BTMethods {
         // Used a variable to more clearly represent what is at index 2 when comparing later
         int profitIndex = 2;
 
-        if(low > high){
-            throw new Exception("Error: low > high, " + low + " > " + high);
+        // Run if array is empty
+        if(p.length < 1){
+            throw new Exception("Error: No data in data file");
         }
 
+        //Returns profit of 0 when the low and high are the same end of recursion
         if (low == high){
             int[] res = {low, high, 0};
             return res;
         }
 
+        //Sets the mid point to to use 
         int mid = (low +high)/2;
         int[] c1 = BestTrading(p,low, mid);// Left of mid point of the array
         int[] c2 = BestTrading(p, mid + 1, high);// Left of mid point of the array
@@ -30,13 +33,9 @@ public class BTMethods {
 
     }
 
-    public int[] BestTradingAcross(int[] p, int low, int high) throws Exception{
+    public int[] BestTradingAcross(int[] p, int low, int high){
 
-        if (low > high){
-            throw new Exception("Error: low > high, " + low + " > " + high);
-
-        }
-
+        //Set mid point
         int mid = (low + high) / 2;
 
         int x = low;//Lowest value index
@@ -58,7 +57,6 @@ public class BTMethods {
 
         // Result is the smalest index, largest index, and the profit from them
         int[] res = {x, y, p[y] - p[x]};
-
         return res;
     }
 
@@ -74,15 +72,14 @@ public class BTMethods {
         //--- Find the size of the array ---//
         int count = 0;
         while (scanner.hasNext()){
-            // only increase count if it has a double
-            // skip any none doubles
-            // scanner views integers as a double
+            // only increase count if it has an int
+            // skip any none ints
             if(scanner.hasNextInt()) {
                 count += 1;
                 scanner.next();
             }
             // If not double then move to the next line
-            else scanner.next();// consume the none double value
+            else scanner.next();// consume the none int value
         }
 
         // Reset the scanner
@@ -101,7 +98,8 @@ public class BTMethods {
                 array[count] = scanner.nextInt();
                 count += 1;
             }
-            // If not double then move to the next line
+
+            // If not an int then move to the next line
             else scanner.next();// consume the none double value
         }
 

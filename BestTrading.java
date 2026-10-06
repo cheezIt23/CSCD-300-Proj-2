@@ -8,9 +8,7 @@ public class BestTrading {
         BTMethods bt = new BTMethods();
 
         try{
-
-        int[] prices = bt.FillArray("data.txt");
-        System.out.println(Arrays.toString(prices) + " Low: " + 0 + " High: " + (prices.length - 1));
+        int[] prices = bt.FillArray(args[0]);
 
         // Output array
         // Index 
@@ -21,8 +19,10 @@ public class BestTrading {
 
         System.out.print(Arrays.toString(res));
         
+       }catch(ArrayIndexOutOfBoundsException e){
+            System.out.print("Error: missing arguments expected 1 received " + args.length + "\njava BestTrading <file> ");
        }catch(Exception e){
-        System.out.print(e.getMessage());
+            System.out.print(e.getMessage());
        }
     }
 }
